@@ -1,0 +1,112 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Adding 2 Numbers | Happy Learning!</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  </head>
+<body onload = "playGame()">
+	
+
+
+
+<div>
+	<h1>Adding Game</h1>
+
+	<p id="demo">First small project</p>
+</div>
+<hr>
+
+<div class = "quiz">
+	<divc class = " quiz-content">
+		<div class = "questions">
+			What is the sum of 	<span class = "text-info" id = "number1"> 15 </span> and <span class = "text-info" id = "number2">6</span>
+		<div class = "options">
+			<div class = "fields">
+					<!-- Pole numer 1 -->
+					<div class = "field-block" id ="Pole1" onclick="checkAnswer(this)"> 11 </div>
+			</div>
+					<!-- Pole numer 2 -->
+			<div class = "fields" >
+					<div class = "field-block" id = "Pole2" onclick="checkAnswer(this)"> 10 </div>
+			</div>
+					<!-- Pole numer 3 -->
+			<div class = "fields">
+					<div class = "field-block"  id ="Pole3" onclick="checkAnswer(this)"> 10 </div>
+			</div>
+					<!-- Pole numer 4 -->
+			<div class = "fields">
+					<div class = "field-block"  id ="Pole4" onclick="checkAnswer(this)"> 10 </div>		
+			</div>
+			</div>
+			<div class="after hide" id="clicked"> </div>
+		</div>
+	<div onclick="playAgain()"> <a class = "button"> Play again</a> </div>
+</div>
+
+
+
+ 
+<script>
+	var number1, number2, correctAnswer;
+	var answersArray = [];
+	
+
+	function playGame() {
+
+	number1 = randomInt(1,100);
+	number2 = randomInt(1,100);
+    correctAnswer = number1 + number2;
+    answersArray = [correctAnswer];
+
+
+
+	while (answersArray.length <4) {
+		var answer = Math.round(correctAnswer * (randomInt(8,12)/10))
+		if(answersArray.indexOf(answer) > -1) continue;	
+		answersArray.push(answer);
+	}
+   
+   	answersArray.sort(function(){return randomInt(-1,1)})
+
+	document.getElementById("number1").innerHTML = number1;
+	document.getElementById("number2").innerHTML = number2;
+	document.getElementById("Pole1").innerHTML = answersArray[0];
+	document.getElementById("Pole2").innerHTML = answersArray[1];
+	document.getElementById("Pole3").innerHTML = answersArray[2];
+	document.getElementById("Pole4").innerHTML = answersArray[3];
+	}	
+
+	function randomInt (min, max) {
+		return Math.floor((Math.random() * (max - min + 1)) + min); 
+	}
+
+	function checkAnswer(clickedField) {
+
+		var after = document.getElementById('clicked');
+
+		if (clickedField.innerHTML == correctAnswer) {
+			console.log("correct");
+			after.classList.remove("hide");
+			after.classList.add("correct");
+			after.innerHTML = "Correct Answer!  Click play Again" ;
+		}	
+		else {
+			console.log("false");
+			after.classList.remove("hide");
+			after.classList.add("wrong");
+			after.innerHTML = "Wrong Answer! Click play Again"
+		}
+	}
+
+	function playAgain() {
+	var after = document.getElementById('clicked');
+	after.classList.add("hide");
+	playGame();
+	}
+	
+</script>
+
+</body>
+</html>
