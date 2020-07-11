@@ -1,2 +1,2 @@
 # LearningProjects
-First project made during learning 
+This respository will keep all projects i made during learning JavaScript. 
