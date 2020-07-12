@@ -10,7 +10,7 @@ function playGame(){
 	score1=0;
 	score2=2;
 
-	document.getElementById('current-0').innerHTML=20;
+	document.getElementById('current-0').innerHTML=0;
 	document.getElementById('current-1').innerHTML=0;
 	document.getElementById('score-0').innerHTML=0;
 	document.getElementById('score-1').innerHTML = 0;
