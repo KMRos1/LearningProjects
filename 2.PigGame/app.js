@@ -10,10 +10,12 @@ function playGame(){
 	score1=0;
 	score2=2;
 
-	document.getElementById('current-0').innerHTML=0;
+	document.getElementById('current-0').innerHTML=20;
 	document.getElementById('current-1').innerHTML=0;
 	document.getElementById('score-0').innerHTML=0;
-	document.getElementById('score-1').innerHTML=0;
+	document.getElementById('score-1').innerHTML = 0;
+	document.querySelector('.player-1-panel').classList.remove('active');
+	document.querySelector('.player-0-panel').classList.add('active');
 	document.getElementById("roll").addEventListener("click", rollDice);
 	document.getElementById("hold").addEventListener("click", hold);
 	document.getElementById("newGame").addEventListener("click", playGame);
