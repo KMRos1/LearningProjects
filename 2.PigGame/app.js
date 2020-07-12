@@ -18,7 +18,12 @@ function playGame(){
 	document.getElementById("points").value = 100;
 
 	document.querySelector('.player-1-panel').classList.remove('active');
+	document.querySelector('.player-1-panel').classList.remove('winner');
+	document.getElementById('name-0').innerHTML = 'Player1';
+	
 	document.querySelector('.player-0-panel').classList.add('active');
+	document.querySelector('.player-0-panel').classList.remove('winner');
+	document.getElementById('name-1').innerHTML = 'Player2';
 
 	document.getElementById("roll").addEventListener("click", rollDice);
 	document.getElementById("hold").addEventListener("click", hold);
