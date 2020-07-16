@@ -8,8 +8,8 @@ function playGame(){
 	isPlayerOne=true;
 	dice=dice2=0;
 	current=0;
-	score1=10;
-	score2=10;
+	score1=0;
+	score2=0;
 
 	document.getElementById('current-0').innerHTML = 0;
 	document.getElementById('current-1').innerHTML = 0;
