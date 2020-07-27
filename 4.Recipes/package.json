@@ -1,0 +1,28 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "Project nr. 4",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMRos1/LearningProjects.git"
+  },
+  "keywords": [
+    "project",
+    "recipes"
+  ],
+  "author": "Kamil Roslan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KMRos1/LearningProjects/issues"
+  },
+  "homepage": "https://github.com/KMRos1/LearningProjects#readme",
+  "devDependencies": {
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
