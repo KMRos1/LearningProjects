@@ -1,10 +1,13 @@
 {
   "ExpandedNodes": [
+    "",
     "\\dist",
     "\\dist\\css",
-    "\\dist\\js",
     "\\src",
-    "\\src\\js"
+    "\\src\\js",
+    "\\src\\js\\models",
+    "\\src\\js\\views"
   ],
+  "SelectedNode": "\\src\\js\\views\\base.js",
   "PreviewInSolutionExplorer": false
 }

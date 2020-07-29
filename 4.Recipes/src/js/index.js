@@ -1,27 +1,31 @@
 import Search from './models/Search';
 import $ from 'qquery';
+import { elements } from './views/base'
+import * as searchView from './views/searchView'
 
 const state = {}
 
 const controlSearch = async () => {
 
-    const query = $('.search__field').val();
+    const query = searchView.getInput();
     if (query) {
         // new search object and add to state
         state.search = new Search(query);
-
-        // premaper ui for search 
-
+        
+        // prepare ui for search 
+        searchView.clearInput();
+        searchView.clearResoults();
         // search for reciepies
         await state.search.getResults();
 
         // render result on ui
-        console.log(state.search.result)
+        searchView.renderResults(state.search.result);
+        console.log(state.search);
     }
 
 } 
 
-$('.search').submit(e => {
+elements.searchForm.submit(e => {
 
     e.preventDefault();
     controlSearch();
