@@ -1,6 +1,29 @@
-// Global app controller
+import Search from './models/Search';
+import $ from 'qquery';
 
-import x from './test';
-const xx = 23;
+const state = {}
 
-console.log(` I imported ${x} from another file and server should reload it automaticaly and the constant is ${xx}`);
+const controlSearch = async () => {
+
+    const query = $('.search__field').val();
+    if (query) {
+        // new search object and add to state
+        state.search = new Search(query);
+
+        // premaper ui for search 
+
+        // search for reciepies
+        await state.search.getResults();
+
+        // render result on ui
+        console.log(state.search.result)
+    }
+
+} 
+
+$('.search').submit(e => {
+
+    e.preventDefault();
+    controlSearch();
+  
+});
