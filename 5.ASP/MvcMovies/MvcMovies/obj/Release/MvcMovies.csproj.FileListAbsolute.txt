@@ -63,3 +63,5 @@ C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies
 C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.csproj.GenerateResource.Cache
 C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.dll
 C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.pdb
+C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.csprojResolveAssemblyReference.cache
+C:\Users\kamil\OneDrive\Pulpit\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.Migrations.AddInfoAboutMovie.resources
