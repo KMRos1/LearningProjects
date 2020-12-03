@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Core.Common.EntitySql;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -11,23 +11,41 @@ namespace MvcMovies.Controllers
 {
     public class MoviesController : Controller
     {
-
-        private List<Movie> getMovies()
+        private ApplicationDbContext _movieContext;
+        public MoviesController()
         {
-            return new List<Movie>
-                {
-                    new Movie{Id = 0, Name = "Iron Man"},
-                    new Movie{Id = 1, Name = "Super Man"}
-                };
+            _movieContext=new ApplicationDbContext();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _movieContext.Dispose();
+        }
+     [Route("/Movies")]
         public ActionResult MoviesList()
         {
-            var movies = new MoviesList()
+            
+            var movies = _movieContext.Movies.ToList();
+
+            var movieData = new MoviesList
             {
-                Movies = getMovies()
+                Movies = movies
+
             };
 
-            return View(movies);
-        }
+            return View(movieData);
+      
+     }
+     [Route("/Movies/MoviesDetails/{id}")]
+
+     public ActionResult MoviesDetails(int id)
+     {
+         var details = _movieContext.Movies.SingleOrDefault(c => c.Id==id);
+             return View(details);
+
+     }
+
+
+
     }
 }

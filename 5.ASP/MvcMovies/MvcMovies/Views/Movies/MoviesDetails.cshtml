@@ -1,0 +1,15 @@
+﻿@model  MvcMovies.Models.Movie
+@{
+    ViewBag.Title = "MoviesDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<ul>
+    <li>Genre: @Model.Genre</li>
+    <li>Relase Date:  @Model.RelaseDate</li>
+    <li>Added Date: @Model.DateAdded</li>
+    <li>In stock: @Model.InStock</li>
+
+</ul> 
