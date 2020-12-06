@@ -165,6 +165,7 @@
     <Compile Include="Controllers\MoviesController.cs" />
     <Compile Include="Data\MoviesList.cs" />
     <Compile Include="Data\MovieData.cs" />
+    <Compile Include="Data\NewCustomer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,6 +283,7 @@
     <Content Include="Views\Customer\Details.cshtml" />
     <Content Include="Views\Movies\MoviesList.cshtml" />
     <Content Include="Views\Movies\MoviesDetails.cshtml" />
+    <Content Include="Views\Customer\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

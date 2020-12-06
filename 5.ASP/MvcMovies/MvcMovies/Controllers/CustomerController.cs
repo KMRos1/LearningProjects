@@ -24,46 +24,75 @@ namespace MvcMovies.Controllers
             _context.Dispose();
         }
 
-        //private List<Customer> getCustomers()
-        //{
-        //    return new List<Customer>
-        //    {
-        //      new Customer {Id = 0, Name = "John"},
-        //        new Customer {Id = 1, Name = "Bob"},
+        public ActionResult New()
+        {
+            var membershiptypes = _context.MembershipTypes.ToList();
+            var viewModel = new NewCustomer
+            {
+                MembershipTypes = membershiptypes
 
-        //    };
-        //}
-
-        // GET: Customer
+            };
+            return View(viewModel);
+        }
+        [HttpPost]
+        public ActionResult Save(NewCustomer viewModel)
+        {
+            if (viewModel.Customer.Id == 0)
+            {
+                _context.Customers.Add(viewModel.Customer);
+            
+            }
+            else
+            {
+                var customerExist = _context.Customers.Single(c => c.Id == viewModel.Customer.Id);
+                customerExist.Name = viewModel.Customer.Name;
+                customerExist.MembershipTypeId = viewModel.Customer.MembershipTypeId;
+                customerExist.IsSubscribedToNewsletter = viewModel.Customer.IsSubscribedToNewsletter;
+                customerExist.Birthday = viewModel.Customer.Birthday;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("CustomerList", "Customer");
+        }
+      
         [Route("/Customers")]
         public ActionResult CustomerList()
         {
            
            var movie = new Movie() {Id = 0, Name = "iron"};
            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
-           var date1 = new MovieData
+           var data1 = new MovieData
            {
             Movie = movie,
             Customers = customers
            };  
-            return View(date1);
+            return View(data1);
         }
+
 
         [Route("/Customer/Details/{id}")]
         public ActionResult Details(int id)
-        {
-           // if (id >= 0 && id < 2)
-          //  {
-              //  var customer = getCustomers().ElementAt(id);
+            {
+          
               var customer = _context.Customers.Include(c => c.MembershipType).SingleOrDefault(c=>c.Id==id);
                 return View(customer);
-          //  }
-           // else
-           // {
-             //   return HttpNotFound();
-           // }
+            }
 
+
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
             
+                if (customer==null)
+                    return HttpNotFound();
+
+            var viewModel = new NewCustomer {
+
+                Customer=customer,
+                MembershipTypes=_context.MembershipTypes.ToList()
+            };
+                return View("New", viewModel);
         }
+        
     }
 }
