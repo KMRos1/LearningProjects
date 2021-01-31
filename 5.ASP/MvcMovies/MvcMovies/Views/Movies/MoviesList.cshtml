@@ -18,8 +18,8 @@
     @foreach (var movie in Model.Movies)
     {
         <tr>
-            <td><a href="/Movies/MoviesDetails/@movie.Id">@movie.Name</a></td>
-            <td>@movie.Genre</td>
+            <td><a href="/Movies/Edit/@movie.Id">@movie.Name</a></td>
+            <td>@movie.Genre.Name</td>
         </tr>
   
         
