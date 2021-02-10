@@ -55,6 +55,21 @@ namespace MvcMovies.Controllers
      }
      public ActionResult Save(Movie newMovie)
      {
+
+         if (!ModelState.IsValid)
+         {
+             var viewM = new NewMovie
+             {
+                 newMovie = newMovie,
+                 genre=_movieContext.Genres.ToList()
+
+             };
+
+             return View("NewMovie", viewM);
+
+         }
+
+
          if (newMovie.Id == 0)
          {
              newMovie.DateAdded = DateTime.Now;
@@ -69,6 +84,7 @@ namespace MvcMovies.Controllers
              movieModel.InStock = newMovie.InStock;
 
          }
+         
          _movieContext.SaveChanges();
          return RedirectToAction("MoviesList", "Movies");
      }

@@ -10,7 +10,7 @@ namespace MvcMovies.Models
     public class Customer
     {
         public int Id { get; set; }
-        [Required]
+        [Required(ErrorMessage="Please enter name")]
         [StringLength(255)]
         public string Name { get; set; }
         public bool IsSubscribedToNewsletter { get; set; }
@@ -18,6 +18,7 @@ namespace MvcMovies.Models
         [Display(Name = "Type of membership")]
         public byte MembershipTypeId { get; set; }
         [Display(Name= "Date of birth")]
+        [AdultValidation]
         public DateTime? Birthday { get; set; }
     }
     

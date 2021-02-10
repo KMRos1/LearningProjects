@@ -14,13 +14,17 @@ namespace MvcMovies.Models
         [StringLength(255)]
         public string Name { get; set; }
         public Genre Genre { get; set; }
+        [Required]
         [Display(Name = "Relase Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
         public DateTime? RelaseDate { get; set; }
+        [Required]
         [Display(Name="Genre")]
         public byte GenreId { get; set; }
         public DateTime? DateAdded { get; set; }
-         [Display(Name = "Number in stock")]
+         [Required]
+        [Display(Name = "Number in stock")]
+        [Range(1,10)]
         public byte InStock { get; set; }
     }
 }
