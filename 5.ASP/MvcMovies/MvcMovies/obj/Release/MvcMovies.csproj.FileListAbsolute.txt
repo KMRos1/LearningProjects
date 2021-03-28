@@ -206,3 +206,9 @@ C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMov
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.dll
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.pdb
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\obj\Release\MvcMovies.Migrations.addValidationsToMovie.resources
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Net.Http.Formatting.dll
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.dll
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.WebHost.dll
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Net.Http.Formatting.xml
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.xml
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.WebHost.xml
