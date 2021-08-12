@@ -212,3 +212,5 @@ C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMov
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Net.Http.Formatting.xml
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.xml
 C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\System.Web.Http.WebHost.xml
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\AutoMapper.dll
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\5.ASP\MvcMovies\MvcMovies\bin\AutoMapper.xml

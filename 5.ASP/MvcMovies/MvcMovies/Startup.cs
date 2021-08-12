@@ -11,4 +11,5 @@ namespace MvcMovies
             ConfigureAuth(app);
         }
     }
+ 
 }
