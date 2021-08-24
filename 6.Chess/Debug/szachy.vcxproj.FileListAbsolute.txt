@@ -1,0 +1,2 @@
+C:\Users\kamil\source\repos\szachy\Debug\szachy.exe
+C:\Users\kamil\source\repos\szachy\Debug\szachy.pdb
