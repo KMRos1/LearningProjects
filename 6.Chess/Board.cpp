@@ -1,4 +1,6 @@
 #include "Board.h"
+#include <iostream>
+
 
 void Board::newBoard() {
 
@@ -107,15 +109,7 @@ void Board::printBoard(){
 
 void Board::movePiece() {
 	
-	bool checking = true;
-	int beginning, target;
-	int* coordBegin=0;
-	int* coordend=0;
-	Pieces beginPiece;
-	Colors beginColor;
-	string message;
-	string correct = "Nastepna tura!";
-	string fault = "Niepoprawny ruch!";
+	checking = true;
 	
 	while (checking) {
 		cout << "Podaj wspolrzedne pionka [XY]" << endl;
@@ -140,12 +134,23 @@ void Board::movePiece() {
 		}
 		else checking = false;
 	}
+	//cout << "black king y " << blackKing[0] << " black king x " << blackKing[1] << endl;
 	switch (beginPiece) {
 
 	case pawn:
 		if (movePawn(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
-			message = correct;
+			//cout << "pawn y " << coordend[0] << " pawn x " << coordend[1] << endl;
+			if (beginColor == white && movePawn(coordend, blackKing, beginColor)) {
+				checkWhite = true;
+				message = "Check!";
+			}
+			else if (beginColor == black && movePawn(coordend, whiteKing, beginColor)) {
+				checkBlack = true;
+				message = "Check!";
+			}
+			
+			else message = correct;
 		}
 		else message = fault;
 		break;
@@ -153,7 +158,16 @@ void Board::movePiece() {
 	case rook:
 		if (moveRook(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
-			message = correct;
+			if (beginColor == white && moveRook(coordend, blackKing, beginColor)) {
+				checkWhite = true;
+				message = "Check!";
+			}
+			else if (beginColor == black && moveRook(coordend, whiteKing, beginColor)) {
+				checkBlack = true;
+				message = "Check!";
+			}
+
+			else message = correct;
 		}
 		else message = fault;
 
@@ -162,7 +176,16 @@ void Board::movePiece() {
 	case knight:
 		if (moveKnight(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
-			message = correct;
+			if (beginColor == white && moveKnight(coordend, blackKing, beginColor)) {
+				checkWhite = true;
+				message = "Check!";
+			}
+			else if (beginColor == black && moveKnight(coordend, whiteKing, beginColor)) {
+				checkBlack = true;
+				message = "Check!";
+			}
+
+			else message = correct;
 		}
 		else message = fault;
 
@@ -171,7 +194,16 @@ void Board::movePiece() {
 	case bishop:
 		if (moveBishop(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
-			message = correct;
+			if (beginColor == white && moveBishop(coordend, blackKing, beginColor)) {
+				checkWhite = true;
+				message = "Check!";
+			}
+			else if (beginColor == black && moveBishop(coordend, whiteKing, beginColor)) {
+				checkBlack = true;
+				message = "Check!";
+			}
+
+			else message = correct;
 		}
 		else message = fault;
 
@@ -181,7 +213,14 @@ void Board::movePiece() {
 	case king:
 		if (moveKing(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+
+			if (beginColor == white) whiteKing = coordend;
+			if (beginColor == black) blackKing = coordend;
+
 			message = correct;
+			checkBlack = false;
+			checkWhite = false;
+
 		}
 		else message = fault;
 
@@ -190,7 +229,16 @@ void Board::movePiece() {
 	case queen:
 		if (moveQueen(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
-			message = correct;
+			if (beginColor == white && moveQueen(coordend, blackKing, beginColor)) {
+				checkWhite = true;
+				message = "Check!";
+			}
+			else if (beginColor == black && moveQueen(coordend, whiteKing, beginColor)) {
+				checkBlack = true;
+				message = "Check!";
+			}
+
+			else message = correct;
 		}
 		else message = fault;
 

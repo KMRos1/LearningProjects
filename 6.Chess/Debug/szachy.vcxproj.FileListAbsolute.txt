@@ -1,2 +1,4 @@
 C:\Users\kamil\source\repos\szachy\Debug\szachy.exe
 C:\Users\kamil\source\repos\szachy\Debug\szachy.pdb
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.exe
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.pdb

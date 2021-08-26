@@ -15,7 +15,7 @@ bool Board::movePawn(int* beg, int* end, Colors _color) {
 	
 	Colors targetColor;
 	bool firstMove = false;
-
+	bool result;
 	targetColor = board[end[0]][end[1]].getColor();
 
 	
@@ -23,24 +23,25 @@ bool Board::movePawn(int* beg, int* end, Colors _color) {
 		if (beg[0] == 6) { firstMove = true; }
 		else firstMove = false;
 
-		if (board[beg[0]-1][beg[1]].getPiece() != emptyPiece) { return false; }
-		else if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == 1 || beg[0] - end[0] == 2)) { return true; }
-		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == 1) { return true; }
-		else if (targetColor == black && (beg[0] - end[0] == 1) && (abs(beg[1] - end[1]) == 1)) { return true; }
-		else { return false; }
+		if (board[beg[0] - 1][beg[1]].getPiece() != emptyPiece && end[1]==beg[1]) { result = false; }
+		else if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == 1 || beg[0] - end[0] == 2)) { result= true; }
+		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == 1) { result = true; }
+		else if (targetColor == black && (beg[0] - end[0] == 1) && (abs(beg[1] - end[1]) == 1)) { result = true; }
+		else { result = false; }
 
 	}
 	else if (_color == black) {
 		if (beg[0] == 1) { firstMove = true; }
 		else firstMove = false;
 
-		if (board[beg[0] + 1][beg[1]].getPiece() != emptyPiece) { return false; }
-		if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == -1 || beg[0] - end[0] == -2)) { return true; }
-		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == -1) { return true; }
-		else if (targetColor == white && (beg[0] - end[0] == -1) && (abs(beg[1] - end[1]) == 1)) { return true; }
-		else { return false; }
+		if (board[beg[0] + 1][beg[1]].getPiece() != emptyPiece && end[1] == beg[1]) { result = false; }
+		if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == -1 || beg[0] - end[0] == -2)) { result = true; }
+		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == -1) { result = true; }
+		else if (targetColor == white && (beg[0] - end[0] == -1) && (abs(beg[1] - end[1]) == 1)) { result = true; }
+		else { result = false; }
 	}
-	else return false;
+	else result = false;
+	return result;
 	
 }
 
@@ -193,8 +194,6 @@ bool Board::moveKing(int* _beg, int* _end, Colors _color) {
 	targetColor = board[_end[0]][_end[1]].getColor();
 	int yDiff = abs(_beg[0] - _end[0]);
 	int xDiff = abs(_beg[1] - _end[1]);
-	//cout << "poczatek " << _beg[0] << " koniec " << _end[0] << " yDiff is " << yDiff << endl;
-	//cout << "poczatek " << _beg[1] << " koniec " << _end[1] << " xDiff is " << xDiff << endl;
 	if (_color != targetColor && xDiff <= 1 && yDiff <= 1) return true;
 	else return false;
 }
@@ -205,3 +204,23 @@ bool Board::moveQueen(int* _beg, int* _end, Colors _color) {
 	else return false;
 
 }
+
+//bool Board::Check(int* _king) {
+//
+//
+//	Colors kingColor = board[_king[0]][_king[1]].getColor();
+//	
+//	bool result = false;
+//	// look for pawn
+//	for (int i = -1; i < 2; i += 2) {
+//		for (int k = -1; i < 2; i += 2) {
+//			if (board[_king[0] + i][_king[1] + k].getPiece() == pawn && board[_king[0] + i][_king[1] + k].getColor() != kingColor) {
+//				result = true;
+//				break;
+//			}
+//		}
+//		if (result) break;
+//	}
+//
+//	return result;
+//}
