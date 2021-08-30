@@ -9,7 +9,6 @@ int* Board::transformcoords(int _coords) {
 	return coords;
 }
 
-
 bool Board::movePawn(int* beg, int* end, Colors _color) {
 
 	
@@ -24,6 +23,7 @@ bool Board::movePawn(int* beg, int* end, Colors _color) {
 		else firstMove = false;
 
 		if (board[beg[0] - 1][beg[1]].getPiece() != emptyPiece && end[1]==beg[1]) { result = false; }
+		else if (firstMove == true && beg[0] - end[0] == 2 &&  board[beg[0] - 2][beg[1]].getPiece() != emptyPiece && end[1] == beg[1]) { result = false; }
 		else if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == 1 || beg[0] - end[0] == 2)) { result= true; }
 		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == 1) { result = true; }
 		else if (targetColor == black && (beg[0] - end[0] == 1) && (abs(beg[1] - end[1]) == 1)) { result = true; }
@@ -35,7 +35,8 @@ bool Board::movePawn(int* beg, int* end, Colors _color) {
 		else firstMove = false;
 
 		if (board[beg[0] + 1][beg[1]].getPiece() != emptyPiece && end[1] == beg[1]) { result = false; }
-		if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == -1 || beg[0] - end[0] == -2)) { result = true; }
+		else if (firstMove == true && beg[0]-end[0] == -2 && board[beg[0] + 2][beg[1]].getPiece() != emptyPiece && end[1] == beg[1]) { result = false; }
+		else if (firstMove == true && beg[1] == end[1] && (beg[0] - end[0] == -1 || beg[0] - end[0] == -2)) { result = true; }
 		else if (firstMove == false && beg[1] == end[1] && (beg[0] - end[0]) == -1) { result = true; }
 		else if (targetColor == white && (beg[0] - end[0] == -1) && (abs(beg[1] - end[1]) == 1)) { result = true; }
 		else { result = false; }
@@ -55,8 +56,6 @@ bool Board::moveRook(int* _beg, int* _end, Colors _color) {
 	if (_beg[0] != _end[0]) counter = abs(_beg[0] - _end[0])-1;
 	if (_beg[1] != _end[1]) counter = abs(_beg[1] - _end[1])-1;
 	
-	//ruch w góre
-	//cout << "poczatek " << _beg[0] << " koniec " << _end[0] << " counter is " << counter << endl;
 	if (_beg[0] > _end[0]) {
 		for (int i = counter; i > 0; i--) {
 			
@@ -100,7 +99,6 @@ bool Board::moveRook(int* _beg, int* _end, Colors _color) {
 			}
 		}
 	}
-	//cout << "color to " << _color << " a target color " << targetColor << " cleartarget " << clearTarget << endl;
 	if ((clearTarget && _color != targetColor)) {
 
 		if (_beg[0] != _end[0] && _beg[1] == _end[1]) return true;
@@ -139,10 +137,6 @@ bool Board::moveBishop(int* _beg, int* _end, Colors _color) {
 	targetColor = board[_end[0]][_end[1]].getColor();
 	int yDiff = abs(_beg[0] - _end[0])-1;
 	int xDiff = abs(_beg[1] - _end[1])-1;
-	cout << "y1 " << _beg[0] << " y2 " << _end[0] << " yDiff is " << yDiff << endl;
-	cout << "x1 " << _beg[1] << " x2 " << _end[1] << " xDiff is " << xDiff << endl;
-	//cout << "color to " << _color << " a target color " << targetColor << " cleartarget " << clearTarget << endl;
-	//cout << "poczatek " << _beg[0] << " koniec " << _end[0] << " counter is " << yDiff << endl;
 
 	if (_beg[0] > _end[0] && _beg[1] > _end[1]) {
 		for (int i = yDiff; i > 0; i--) {
@@ -205,22 +199,87 @@ bool Board::moveQueen(int* _beg, int* _end, Colors _color) {
 
 }
 
-//bool Board::Check(int* _king) {
-//
-//
-//	Colors kingColor = board[_king[0]][_king[1]].getColor();
-//	
-//	bool result = false;
-//	// look for pawn
-//	for (int i = -1; i < 2; i += 2) {
-//		for (int k = -1; i < 2; i += 2) {
-//			if (board[_king[0] + i][_king[1] + k].getPiece() == pawn && board[_king[0] + i][_king[1] + k].getColor() != kingColor) {
-//				result = true;
-//				break;
-//			}
-//		}
-//		if (result) break;
-//	}
-//
-//	return result;
-//}
+
+bool Board::Check(int* _king) {
+	
+	bool result = false;
+	Colors kingColor = board[_king[0]][_king[1]].getColor();
+	Pieces checkPiece;
+	int array[2];
+	Colors tempColor;
+	for (int i = 0; i < 8; i++) {
+
+		for (int k = 0; k < 8; k++) {
+
+			if (board[i][k].getColor() != kingColor && (board[i][k].getColor() != emptyColor)) {
+				tempColor = (kingColor==white)? black : white;
+				checkPiece = board[i][k].getPiece();
+				array[0] = i;
+				array[1] = k;
+				switch (checkPiece) {
+				case pawn: 
+					if (movePawn(array, _king, tempColor)) {
+						result = true;
+					}
+					break;
+				case knight:
+					if (moveKnight(array, _king, tempColor)) {
+						result = true;
+					}
+					break;
+				case rook:
+					if (moveRook(array, _king, tempColor)) {
+						result = true;
+					}
+					break;
+				case queen:
+					if (moveQueen(array, _king, tempColor)) {
+						result = true;
+					}
+					break;
+				case bishop:
+					if (moveBishop(array, _king, tempColor)) {
+						result = true;
+					}
+					break;
+				default: 
+					result = false;
+				}
+			}
+			if (result) break;
+		}
+		if (result) break;
+
+	}
+	return result;
+}
+
+bool Board::EndGame(int* _king, Colors _kingColor) {
+	bool end = true;
+	Pieces temPiece;
+	Colors temColor;
+	int* TempCoords = new int[2];
+	for (int i = -1; i < 2; i++) {
+		for (int k = -1; k < 2; k++) {
+		
+			TempCoords[0] = (_king[0] + i) > 7 ? abs(_king[0] - i) : abs(_king[0] + i);
+			TempCoords[1] = (_king[1] + k) > 7 ? abs(_king[1] - k) : abs(_king[1] + k);
+			if(moveKing(_king,TempCoords, _kingColor)) {
+				temPiece = board[TempCoords[0]][TempCoords[1]].getPiece();
+				temColor = board[TempCoords[0]][TempCoords[1]].getColor();
+				move(_king,TempCoords);
+				if (!Check(TempCoords)) {
+					end = false;
+				}
+				move(TempCoords, _king);
+				board[TempCoords[0]][TempCoords[1]].setColor(temColor);
+				board[TempCoords[0]][TempCoords[1]].setPiece(temPiece);
+			}
+			if (!end) break;
+
+		}
+		if (!end) break;
+	}
+	return end;
+
+}

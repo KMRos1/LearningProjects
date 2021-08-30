@@ -107,18 +107,23 @@ void Board::printBoard(){
 	cout << endl;
 }
 
-void Board::movePiece() {
+bool Board::theGame() {
 	
 	checking = true;
-	
+	Pieces temPiece;
+	Colors temColor;
+	playerMessage = (actualPlayer == white) ? "Bialy" : "Czarny";
 	while (checking) {
+		
+		cout << "Aktualny gracz: " << playerMessage << endl;
 		cout << "Podaj wspolrzedne pionka [XY]" << endl;
 		cin >> beginning;
 		coordBegin = transformcoords(beginning);
 		beginPiece = board[coordBegin[0]][coordBegin[1]].getPiece();
 		beginColor= board[coordBegin[0]][coordBegin[1]].getColor();
-		if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7) { cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;}
-		else if(beginPiece==emptyPiece) { cout << "na tym polu nie ma bierki!" << endl; }
+		if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7)  cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
+		else if(beginPiece==emptyPiece)  cout << "na tym polu nie ma bierki!" << endl; 
+		else if (beginColor != actualPlayer) cout<< " Nie twoj ruch!" << endl;
 		else checking = false;
 		
 	}
@@ -128,10 +133,7 @@ void Board::movePiece() {
 		cout << "Podaj wspolrzedne docelowe [XY]" << endl;
 		cin >> target;
 		coordend = transformcoords(target);
-		if (coordend[0] < 0 || coordend[0] > 7 || coordend[1] < 0 || coordend[1] > 7) {
-			cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
-
-		}
+		if (coordend[0] < 0 || coordend[0] > 7 || coordend[1] < 0 || coordend[1] > 7) cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
 		else checking = false;
 	}
 	//cout << "black king y " << blackKing[0] << " black king x " << blackKing[1] << endl;
@@ -140,13 +142,16 @@ void Board::movePiece() {
 	case pawn:
 		if (movePawn(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+			actualPlayer = (actualPlayer == white) ? black : white;
 			//cout << "pawn y " << coordend[0] << " pawn x " << coordend[1] << endl;
 			if (beginColor == white && movePawn(coordend, blackKing, beginColor)) {
 				checkWhite = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 			else if (beginColor == black && movePawn(coordend, whiteKing, beginColor)) {
 				checkBlack = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 			
@@ -158,12 +163,15 @@ void Board::movePiece() {
 	case rook:
 		if (moveRook(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+			actualPlayer = (actualPlayer == white) ? black : white;
 			if (beginColor == white && moveRook(coordend, blackKing, beginColor)) {
 				checkWhite = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 			else if (beginColor == black && moveRook(coordend, whiteKing, beginColor)) {
 				checkBlack = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 
@@ -176,12 +184,15 @@ void Board::movePiece() {
 	case knight:
 		if (moveKnight(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+			actualPlayer = (actualPlayer == white) ? black : white;
 			if (beginColor == white && moveKnight(coordend, blackKing, beginColor)) {
 				checkWhite = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 			else if (beginColor == black && moveKnight(coordend, whiteKing, beginColor)) {
 				checkBlack = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 
@@ -194,12 +205,15 @@ void Board::movePiece() {
 	case bishop:
 		if (moveBishop(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+			actualPlayer = (actualPlayer == white) ? black : white;
 			if (beginColor == white && moveBishop(coordend, blackKing, beginColor)) {
 				checkWhite = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 			else if (beginColor == black && moveBishop(coordend, whiteKing, beginColor)) {
 				checkBlack = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 
@@ -212,14 +226,24 @@ void Board::movePiece() {
 
 	case king:
 		if (moveKing(coordBegin, coordend, beginColor)) {
+			temPiece = board[coordend[0]][coordend[1]].getPiece();
+			temColor = board[coordend[0]][coordend[1]].getColor();
+		
 			move(beginning, target);
+			if (!Check(coordend)) {
+				message = correct;
+				actualPlayer = (actualPlayer == white) ? black : white;
+			}
 
+			else {
+				message = fault;
+				move(target, beginning);
+				board[coordend[0]][coordend[1]].setColor(temColor);
+				board[coordend[0]][coordend[1]].setPiece(temPiece);
+			}
 			if (beginColor == white) whiteKing = coordend;
 			if (beginColor == black) blackKing = coordend;
 
-			message = correct;
-			checkBlack = false;
-			checkWhite = false;
 
 		}
 		else message = fault;
@@ -229,12 +253,16 @@ void Board::movePiece() {
 	case queen:
 		if (moveQueen(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
+			actualPlayer = (actualPlayer == white) ? black : white;
 			if (beginColor == white && moveQueen(coordend, blackKing, beginColor)) {
 				checkWhite = true;
+				attacker = coordend;
 				message = "Check!";
+
 			}
 			else if (beginColor == black && moveQueen(coordend, whiteKing, beginColor)) {
 				checkBlack = true;
+				attacker = coordend;
 				message = "Check!";
 			}
 
@@ -247,12 +275,45 @@ void Board::movePiece() {
 		move(beginning, target);
 
 	}
+	if (Check(whiteKing)) {
+		checkWhite = true;
+		message = "Check White!";
+	}
+	else checkWhite = false;
 
+	if (Check(blackKing)) {
+		checkBlack = true;
+		message = "Check Black!";
+	}
+	else checkBlack = false;
+
+	if (checkWhite) {
+		if (EndGame(whiteKing, white) && !Check(attacker)) {
+			continueGame = false;
+			message = "Good job, White win! ";
+		}
+		if (EndGame(whiteKing, white) && Check(attacker)) message = "Check!";
+	}
+	if (checkBlack) {
+		if (EndGame(blackKing, black) && !Check(attacker)) {
+			continueGame = false;
+			message = "Good job!, Black Win!";
+	}
+		if (EndGame(blackKing, black) && Check(attacker)) message = "Check!";
+
+	}
 	
 	system("cls");
 	printBoard();
 	cout << message << endl;
+	if (continueGame) return true;
+	else {
+		cout << "Game ended! Press smtg to leave" << endl;
+		cin >> smth;
+		return false;
 
+	}
+	//return continueGame;
 
 }
 void Board::move(int _beginning, int _target) {
@@ -267,8 +328,19 @@ void Board::move(int _beginning, int _target) {
 	board[end[0]][end[1]].setPiece(oldPiece);
 
 }
+void Board::move(int* _beginning, int* _target) {
+	Pieces oldPiece;
+	Colors oldColor;
+	oldPiece = board[_beginning[0]][_beginning[1]].getPiece();
+	oldColor = board[_beginning[0]][_beginning[1]].getColor();
+	board[_beginning[0]][_beginning[1]].resetSquare();
+	board[_target[0]][_target[1]].setColor(oldColor);
+	board[_target[0]][_target[1]].setPiece(oldPiece);
+
+}
 
 void Board::newGame() {
+	continueGame = true;
 	newBoard();
 	printBoard();
 	
