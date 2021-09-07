@@ -43,6 +43,7 @@ class Board
 	bool moveQueen(int* _beg, int* _end, Colors _color);
 	bool Check(int* _kingz);
 	bool EndGame(int* _king,Colors _kingColor);
-
+	void SaveGame();
+	void LoadGame();
 };
 

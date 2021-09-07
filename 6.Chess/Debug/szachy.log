@@ -1,2 +1,5 @@
-﻿  main.cpp
+﻿  Board.cpp
+C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Board.cpp(418,6): warning C4101: 'size': unreferenced local variable
+  gameLogic.cpp
+  Generating Code...
   szachy.vcxproj -> C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.exe

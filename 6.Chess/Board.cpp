@@ -74,7 +74,7 @@ void Board::newBoard() {
 void Board::printBoard(){
 	string Icolor;
 	string Ipiece;
-
+	playerMessage = (actualPlayer == white) ? "Bialy" : "Czarny";
 	//string textLine;
 		
 	cout << "      1    2    3    4    5    6    7    8  " << endl;
@@ -85,7 +85,8 @@ void Board::printBoard(){
 			Pieces localPiece = board[k][i].getPiece();
 
 			if (board[k][i].getColor() == white) { Icolor = 'W'; }
-			else Icolor = 'B';
+			else if (board[k][i].getColor() == black) { Icolor = 'B'; }
+			else Icolor = 'E';
 
 			if (localPiece == rook) { Ipiece = 'R'; }
 			else if (localPiece == knight) { Ipiece = 'K'; }
@@ -105,6 +106,11 @@ void Board::printBoard(){
 	}
 	cout << "      1    2    3    4    5    6    7    8  " << endl;
 	cout << endl;
+	cout << " Jesli chcesz zapisac gre, wpisz 0" << endl;
+	cout << " Jesli chcesz wczytac gre, wpisz 1" << endl << endl;
+	cout << "Aktualny gracz: " << playerMessage << endl;
+	cout << message << endl;
+	
 }
 
 bool Board::theGame() {
@@ -112,20 +118,40 @@ bool Board::theGame() {
 	checking = true;
 	Pieces temPiece;
 	Colors temColor;
-	playerMessage = (actualPlayer == white) ? "Bialy" : "Czarny";
+
 	while (checking) {
-		
-		cout << "Aktualny gracz: " << playerMessage << endl;
 		cout << "Podaj wspolrzedne pionka [XY]" << endl;
 		cin >> beginning;
-		coordBegin = transformcoords(beginning);
-		beginPiece = board[coordBegin[0]][coordBegin[1]].getPiece();
-		beginColor= board[coordBegin[0]][coordBegin[1]].getColor();
-		if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7)  cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
-		else if(beginPiece==emptyPiece)  cout << "na tym polu nie ma bierki!" << endl; 
-		else if (beginColor != actualPlayer) cout<< " Nie twoj ruch!" << endl;
-		else checking = false;
-		
+		if (beginning == 0) {
+			SaveGame();
+		}
+		else if (beginning == 1) {
+
+			LoadGame();
+		}
+		else {
+			coordBegin = transformcoords(beginning);
+			beginPiece = board[coordBegin[0]][coordBegin[1]].getPiece();
+			beginColor = board[coordBegin[0]][coordBegin[1]].getColor();
+			if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7) {
+				system("cls");
+				printBoard();
+				cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
+			}
+			else if (beginPiece == emptyPiece) {
+
+				system("cls");
+				printBoard();
+				cout << "na tym polu nie ma bierki!" << endl;
+			}
+			else if (beginColor != actualPlayer) {
+				system("cls");
+				printBoard();
+				cout << " Nie twoj ruch!" << endl;
+			}
+			
+			else checking = false;
+		}
 	}
 	checking = true;
 		
@@ -143,7 +169,6 @@ bool Board::theGame() {
 		if (movePawn(coordBegin, coordend, beginColor)) {
 			move(beginning, target);
 			actualPlayer = (actualPlayer == white) ? black : white;
-			//cout << "pawn y " << coordend[0] << " pawn x " << coordend[1] << endl;
 			if (beginColor == white && movePawn(coordend, blackKing, beginColor)) {
 				checkWhite = true;
 				attacker = coordend;
@@ -232,17 +257,19 @@ bool Board::theGame() {
 			move(beginning, target);
 			if (!Check(coordend)) {
 				message = correct;
+				if (beginColor == white) whiteKing = coordend;
+				if (beginColor == black) blackKing = coordend;
 				actualPlayer = (actualPlayer == white) ? black : white;
 			}
 
 			else {
 				message = fault;
 				move(target, beginning);
+				//cout << temPiece << " " << temColor;
 				board[coordend[0]][coordend[1]].setColor(temColor);
 				board[coordend[0]][coordend[1]].setPiece(temPiece);
 			}
-			if (beginColor == white) whiteKing = coordend;
-			if (beginColor == black) blackKing = coordend;
+			
 
 
 		}
@@ -286,10 +313,12 @@ bool Board::theGame() {
 		message = "Check Black!";
 	}
 	else checkBlack = false;
-
+	cout << "king y " << whiteKing[0] << " king x " << whiteKing[1] << endl;
 	if (checkWhite) {
 		if (EndGame(whiteKing, white) && !Check(attacker)) {
 			continueGame = false;
+			cout << " catch" << endl;
+			
 			message = "Good job, White win! ";
 		}
 		if (EndGame(whiteKing, white) && Check(attacker)) message = "Check!";
@@ -305,7 +334,8 @@ bool Board::theGame() {
 	
 	system("cls");
 	printBoard();
-	cout << message << endl;
+	
+	//cout << message << endl;
 	if (continueGame) return true;
 	else {
 		cout << "Game ended! Press smtg to leave" << endl;
@@ -316,6 +346,7 @@ bool Board::theGame() {
 	//return continueGame;
 
 }
+
 void Board::move(int _beginning, int _target) {
 	Pieces oldPiece;
 	Colors oldColor;
@@ -328,6 +359,7 @@ void Board::move(int _beginning, int _target) {
 	board[end[0]][end[1]].setPiece(oldPiece);
 
 }
+
 void Board::move(int* _beginning, int* _target) {
 	Pieces oldPiece;
 	Colors oldColor;
@@ -346,3 +378,84 @@ void Board::newGame() {
 	
 }
 
+void Board::SaveGame() {
+	string file;
+
+	cout << " Podaj nazwê pliku do zapisania" << endl;
+	cin >> file;
+
+	ofstream output(file);
+
+	if (output.is_open()) {
+		for (int i = 0; i < 8; i++) {
+
+			for (int k = 0; k < 8; k++) {
+				output << board[i][k].getPiece() << " - " << board[i][k].getColor() << "\n";
+
+		}
+		
+		}
+
+		output << actualPlayer <<" - " <<"-1" << "\n";
+		output << message << "\n";
+		output.close();
+		cout << " chyba git" << endl;
+
+
+
+	}
+	else {
+
+		cout << " error " << endl;
+	}
+
+}
+
+void Board::LoadGame() {
+	string file, line;
+	int counter = 0;
+	int arr[65][2];
+	int size;
+
+	cout << "podaj nazwe pliku do odczytania" << endl;
+	cin >> file;
+
+
+	ifstream input(file);
+	if (input) {
+		while (getline(input, line)) {
+			if (counter < 65) {
+				size_t sep = line.find(" -");
+				arr[counter][0] = stoi(line.substr(0, sep));
+				arr[counter][1] = stoi(line.substr(line.find("-") + 2));
+			}
+			else {
+				message = line;
+			}
+			counter++;
+		}
+		counter = 0;
+		for (int i = 0; i < 8; i++) {
+
+			for (int k = 0; k < 8; k++) {
+				board[i][k].setPiece(arr[counter][0]);
+				board[i][k].setColor(arr[counter][1]);
+				counter++;
+			}
+		}
+		if (arr[counter][0] == 0) {
+			actualPlayer = white;
+		}
+		else {
+			actualPlayer = black;
+		}
+	}
+
+	else {
+
+		cout << " no file" << endl;
+	}
+	input.close();
+	system("cls");
+	printBoard();
+}

@@ -280,6 +280,7 @@ bool Board::EndGame(int* _king, Colors _kingColor) {
 		}
 		if (!end) break;
 	}
+
 	return end;
 
 }

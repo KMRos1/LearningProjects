@@ -12,8 +12,10 @@ class Square {
 public:
 	Colors getColor();
 	void setColor(Colors _color);
+	void setColor(int _color);
 	Pieces getPiece();
 	void setPiece(Pieces _piece);
+	void setPiece(int _piece);
 	void resetSquare();
 	int getxAxis();
 	int getyAxis();

@@ -2,10 +2,10 @@
 #include <string>
 #include "Board.h"
 
-int main() {
 
-	bool loop = false;
+int main() {
 	Board game;
+	bool loop = false;
 	char input;
 	cout << "Hello! Wanna play a game?" << endl;
 	cout << "If yes press Y, if no press N" << endl;
@@ -42,3 +42,4 @@ int main() {
 
 //	return 0;
 }
+
