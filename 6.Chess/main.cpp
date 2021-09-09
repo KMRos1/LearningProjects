@@ -10,6 +10,7 @@ int main() {
 	cout << "Hello! Wanna play a game?" << endl;
 	cout << "If yes press Y, if no press N" << endl;
 	cin >> input;
+	input = toupper(input);
 	if (input == 'Y') {
 		system("cls");
 		game.newGame();
@@ -28,6 +29,7 @@ int main() {
 	cout << "That was a good game, wanna try again?" << endl;
 	cout << "If yes press Y, if no press N" << endl;
 	cin >> input;
+	input = toupper(input);
 
 	if (input == 'Y') {
 		system("cls");

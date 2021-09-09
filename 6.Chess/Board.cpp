@@ -1,11 +1,10 @@
 #include "Board.h"
-#include <iostream>
-
 
 void Board::newBoard() {
 
 	board[0][0].setColor(black);
 	board[0][0].setPiece(rook);
+
 
 	board[0][1].setColor(black);
 	board[0][1].setPiece(knight);
@@ -75,7 +74,6 @@ void Board::printBoard(){
 	string Icolor;
 	string Ipiece;
 	playerMessage = (actualPlayer == white) ? "Bialy" : "Czarny";
-	//string textLine;
 		
 	cout << "      1    2    3    4    5    6    7    8  " << endl;
 	for (int k = 0; k < 8; k++) {
@@ -116,54 +114,146 @@ void Board::printBoard(){
 bool Board::theGame() {
 	
 	checking = true;
-	Pieces temPiece;
-	Colors temColor;
 
 	while (checking) {
-		cout << "Podaj wspolrzedne pionka [XY]" << endl;
-		cin >> beginning;
-		if (beginning == 0) {
-			SaveGame();
-		}
-		else if (beginning == 1) {
+		while (checking) {
+			std::cout << "Podaj wspolrzedne pionka [XY]" << endl;
+			cin >> beginning;
+			if (beginning == 0) {
+				saveGame();
+			}
+			else if (beginning == 1) {
 
-			LoadGame();
-		}
-		else {
-			coordBegin = transformcoords(beginning);
-			beginPiece = board[coordBegin[0]][coordBegin[1]].getPiece();
-			beginColor = board[coordBegin[0]][coordBegin[1]].getColor();
-			if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7) {
-				system("cls");
-				printBoard();
-				cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
+				loadGame();
 			}
-			else if (beginPiece == emptyPiece) {
+			else {
+				coordBegin = transformcoords(beginning);
+				beginPiece = board[coordBegin[0]][coordBegin[1]].getPiece();
+				beginColor = board[coordBegin[0]][coordBegin[1]].getColor();
+				if (coordBegin[0] < 0 || coordBegin[0] > 7 || coordBegin[1] < 0 || coordBegin[1] > 7) {
+					system("cls");
+					printBoard();
+					std::cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
+				}
+				else if (beginPiece == emptyPiece) {
 
-				system("cls");
-				printBoard();
-				cout << "na tym polu nie ma bierki!" << endl;
+					system("cls");
+					printBoard();
+					std::cout << "na tym polu nie ma bierki!" << endl;
+				}
+				else if (beginColor != actualPlayer) {
+					system("cls");
+					printBoard();
+					std::cout << " Nie twoj ruch!" << endl;
+				}
+
+				else checking = false;
 			}
-			else if (beginColor != actualPlayer) {
-				system("cls");
-				printBoard();
-				cout << " Nie twoj ruch!" << endl;
+			if (checkWhite || checkBlack) {
+
+				switch (beginPiece)
+				{
+				case pawn:
+					if (!movePawn(coordBegin, attacker, beginColor)) {
+						checking = true;
+						std::cout << "Musisz uciec krolem" << endl;
+					}
+					break;
+				case knight:
+					if (!moveKnight(coordBegin, attacker, beginColor)) {
+						checking = true;
+						std::cout << "Musisz uciec krolem" << endl;
+					}
+					break;
+				case rook:
+					if (!moveRook(coordBegin, attacker, beginColor)) {
+						checking = true;
+						std::cout << "Musisz uciec krolem" << endl;
+					}
+					break;
+				case bishop:
+					if (!moveBishop(coordBegin, attacker, beginColor)) {
+						checking = true;
+						std::cout << "Musisz uciec krolem" << endl;
+					}
+					break;
+				case queen:
+					if (!moveQueen(coordBegin, attacker, beginColor)) {
+						checking = true;
+						std::cout << "Musisz uciec krolem" << endl;
+					}
+					break;
+				default:
+					checking = false;
+					break;
+				}
 			}
-			
-			else checking = false;
 		}
-	}
-	checking = true;
-		
-	while (checking) {
-		cout << "Podaj wspolrzedne docelowe [XY]" << endl;
+		checking = true;
+
+		std::cout << "Podaj wspolrzedne docelowe [XY]" << endl;
 		cin >> target;
 		coordend = transformcoords(target);
-		if (coordend[0] < 0 || coordend[0] > 7 || coordend[1] < 0 || coordend[1] > 7) cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
+
+		if (coordend[0] < 0 || coordend[0] > 7 || coordend[1] < 0 || coordend[1] > 7) std::cout << "niepoprawne wspolrzedne, sprobuj ponownie" << endl;
 		else checking = false;
+		if ((checkWhite || checkBlack) && beginPiece != king && (*coordend != *attacker)) {
+			checking = true;
+			system("cls");
+			std::cout << "Musisz uciec krolem" << endl;
+		}
+
+		
 	}
-	//cout << "black king y " << blackKing[0] << " black king x " << blackKing[1] << endl;
-	switch (beginPiece) {
+
+	checkMove(beginPiece);
+	
+	if (Check(whiteKing)) {
+		checkWhite = true;
+		message = "Check White!";
+	}
+	else checkWhite = false;
+
+	if (Check(blackKing)) {
+		checkBlack = true;
+		message = "Check Black!";
+	}
+	else checkBlack = false;
+	if (checkWhite) {
+		if (EndGame(whiteKing, white) && !Check(attacker)) {
+			continueGame = false;
+			
+			message = "Good job, White win! ";
+		}
+		if (EndGame(whiteKing, white) && Check(attacker)) message = "Check!";
+	}
+	if (checkBlack) {
+		if (EndGame(blackKing, black) && !Check(attacker)) {
+			continueGame = false;
+			message = "Good job!, Black Win!";
+	}
+		if (EndGame(blackKing, black) && Check(attacker)) message = "Check!";
+
+	}
+	
+	system("cls");
+	printBoard();
+	
+
+	if (continueGame) return true;
+	else {
+		std::cout << "Game ended! Press smtg to leave" << endl;
+		cin >> smth;
+		return false;
+
+	}
+
+
+}
+void Board::checkMove(Pieces _piece) {
+	Pieces temPiece;
+	Colors temColor;
+	switch (_piece) {
 
 	case pawn:
 		if (movePawn(coordBegin, coordend, beginColor)) {
@@ -179,7 +269,7 @@ bool Board::theGame() {
 				attacker = coordend;
 				message = "Check!";
 			}
-			
+
 			else message = correct;
 		}
 		else message = fault;
@@ -253,7 +343,7 @@ bool Board::theGame() {
 		if (moveKing(coordBegin, coordend, beginColor)) {
 			temPiece = board[coordend[0]][coordend[1]].getPiece();
 			temColor = board[coordend[0]][coordend[1]].getColor();
-		
+
 			move(beginning, target);
 			if (!Check(coordend)) {
 				message = correct;
@@ -265,11 +355,10 @@ bool Board::theGame() {
 			else {
 				message = fault;
 				move(target, beginning);
-				//cout << temPiece << " " << temColor;
 				board[coordend[0]][coordend[1]].setColor(temColor);
 				board[coordend[0]][coordend[1]].setPiece(temPiece);
 			}
-			
+
 
 
 		}
@@ -302,51 +391,8 @@ bool Board::theGame() {
 		move(beginning, target);
 
 	}
-	if (Check(whiteKing)) {
-		checkWhite = true;
-		message = "Check White!";
-	}
-	else checkWhite = false;
-
-	if (Check(blackKing)) {
-		checkBlack = true;
-		message = "Check Black!";
-	}
-	else checkBlack = false;
-	cout << "king y " << whiteKing[0] << " king x " << whiteKing[1] << endl;
-	if (checkWhite) {
-		if (EndGame(whiteKing, white) && !Check(attacker)) {
-			continueGame = false;
-			cout << " catch" << endl;
-			
-			message = "Good job, White win! ";
-		}
-		if (EndGame(whiteKing, white) && Check(attacker)) message = "Check!";
-	}
-	if (checkBlack) {
-		if (EndGame(blackKing, black) && !Check(attacker)) {
-			continueGame = false;
-			message = "Good job!, Black Win!";
-	}
-		if (EndGame(blackKing, black) && Check(attacker)) message = "Check!";
-
-	}
-	
-	system("cls");
-	printBoard();
-	
-	//cout << message << endl;
-	if (continueGame) return true;
-	else {
-		cout << "Game ended! Press smtg to leave" << endl;
-		cin >> smth;
-		return false;
-
-	}
-	//return continueGame;
 
 }
-
 void Board::move(int _beginning, int _target) {
 	Pieces oldPiece;
 	Colors oldColor;
@@ -378,10 +424,10 @@ void Board::newGame() {
 	
 }
 
-void Board::SaveGame() {
+void Board::saveGame() {
 	string file;
 
-	cout << " Podaj nazwê pliku do zapisania" << endl;
+	std::cout << " Podaj nazwê pliku do zapisania" << endl;
 	cin >> file;
 
 	ofstream output(file);
@@ -399,25 +445,25 @@ void Board::SaveGame() {
 		output << actualPlayer <<" - " <<"-1" << "\n";
 		output << message << "\n";
 		output.close();
-		cout << " chyba git" << endl;
+		std::cout << " Pli zapisany" << endl;
 
 
 
 	}
 	else {
 
-		cout << " error " << endl;
+		std::cout << " error " << endl;
 	}
 
 }
 
-void Board::LoadGame() {
+void Board::loadGame() {
 	string file, line;
 	int counter = 0;
 	int arr[65][2];
 	int size;
 
-	cout << "podaj nazwe pliku do odczytania" << endl;
+	std::cout << "podaj nazwe pliku do odczytania" << endl;
 	cin >> file;
 
 
@@ -453,7 +499,7 @@ void Board::LoadGame() {
 
 	else {
 
-		cout << " no file" << endl;
+		std::cout << " brak pliku" << endl;
 	}
 	input.close();
 	system("cls");
