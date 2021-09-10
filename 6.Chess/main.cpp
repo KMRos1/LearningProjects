@@ -2,7 +2,10 @@
 #include <string>
 #include "Board.h"
 
-
+/// <summary>
+/// G³ówna funkcja programu
+/// </summary>
+/// <returns></returns>
 int main() {
 	Board game;
 	bool loop = false;
@@ -20,7 +23,7 @@ int main() {
 		cout << "Maybe next time!" << endl;
 
 	}
-	while (loop) {
+	while (loop) { 
 
 		loop = game.theGame();
 	}

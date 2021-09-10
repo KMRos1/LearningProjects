@@ -1,0 +1,381 @@
+\hypertarget{class_board}{}\doxysection{Board Class Reference}
+\label{class_board}\index{Board@{Board}}
+
+
+G³ówna klasa \mbox{\hyperlink{class_board}{Board}} przechowuj¹ca pionki, ze wzglêdu na problemy z implementacj¹ klas przechowuje te¿ funkcje sprawdzaj¹ce ruch pionków  
+
+
+
+
+{\ttfamily \#include $<$Board.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int $\ast$ \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}} (int \+\_\+coords)
+\begin{DoxyCompactList}\small\item\em Funkcja rozdzielajaca podane wspó³rzêdne na dwie oddzielne cyfry \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_aac2c60dfe825c6166be7d92418a1ef2a}\label{class_board_aac2c60dfe825c6166be7d92418a1ef2a}} 
+void {\bfseries new\+Board} ()
+\begin{DoxyCompactList}\small\item\em Funkcja tworz¹ca now¹ szachownicê i wype³niaj¹ca j¹ pionkami \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_aca49f093314a104381d05998bbf62f7f}\label{class_board_aca49f093314a104381d05998bbf62f7f}} 
+void {\bfseries print\+Board} ()
+\begin{DoxyCompactList}\small\item\em Funkcja rysuj¹ca szachownicê oraz wyœwietlaj¹ca wiadomoœæ po wykonaniu ruchu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a05c5b1f60f35e9fc2da413f06647df72}\label{class_board_a05c5b1f60f35e9fc2da413f06647df72}} 
+void {\bfseries new\+Game} ()
+\begin{DoxyCompactList}\small\item\em Funkcja tworz¹ca now¹ grê, czyli tworz¹ca i rysuj¹ca szachownice \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a8758688bd938ed3faafc8c0d8a064b6d}{the\+Game}} ()
+\begin{DoxyCompactList}\small\item\em G³ówna funkcja obs³uguj¹ca grê \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_aed23eb8fab7b05dc1781270f5e1f3425}{check\+Move}} (Pieces \+\_\+piece)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca poprawnoœæ wykonywanego ruchu \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_ad194b4b5452a6084d9c3ac3c9e5c0ead}{move}} (int \+\_\+beginning, int \+\_\+target)
+\begin{DoxyCompactList}\small\item\em Funkcja wykonuj¹ca ruch pionkiem \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_board_ad61b7b336fea51aceaf721f6cb1445ce}{move}} (int $\ast$\+\_\+beginning, int $\ast$\+\_\+target)
+\begin{DoxyCompactList}\small\item\em Funkcja wykonuj¹ca ruch pionkiem \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a9c2b984619ec984dbf852f1776bc2432}{move\+Pawn}} (int $\ast$beg, int $\ast$end, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Pionkiem mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_aec8325e40c701521c125a8d7e29fd28c}{move\+Rook}} (int $\ast$\+\_\+beginning, int $\ast$\+\_\+target, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Wie¿¹ mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a0a2b6c282f8daf45812115526b9dee29}{move\+Knight}} (int $\ast$\+\_\+beg, int $\ast$\+\_\+end, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Skoczkiem mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_a246408d9574bdaa6b6d347d2dd32a7b6}{move\+Bishop}} (int $\ast$\+\_\+beg, int $\ast$\+\_\+end, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Goñcem mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_ae4c4916f2915672e9b9b9feda6e5a0ea}{move\+King}} (int $\ast$\+\_\+beg, int $\ast$\+\_\+end, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Królem mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_ad2caea76dcc3f0d4aea3d0eeb527faa2}{move\+Queen}} (int $\ast$\+\_\+beg, int $\ast$\+\_\+end, Colors \+\_\+color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy ruch Królow¹ mo¿e byæ wykonany \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_aaf79cf2b2c30650cca3423fb42efa9b9}{Check}} (int $\ast$\+\_\+kingz)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca, czy król znajduje siê w po³o¿eniu Check \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_board_ad334511612d3a06b8b3114143cc29da9}{End\+Game}} (int $\ast$\+\_\+king, Colors \+\_\+king\+Color)
+\begin{DoxyCompactList}\small\item\em Funkcja sprawdzaj¹ca czy król na pozycji Check ma opcjê ratunku \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a5a6d3e4873393cca915e1b99f58962e0}\label{class_board_a5a6d3e4873393cca915e1b99f58962e0}} 
+void {\bfseries save\+Game} ()
+\begin{DoxyCompactList}\small\item\em Funkcja s³u¿¹ca do zapisu gry. Tworzy plik z u³o¿eniem szachownicy i kolorem aktualnego gracza \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a29e8b760c3e865dc05bb773e768e1d5a}\label{class_board_a29e8b760c3e865dc05bb773e768e1d5a}} 
+void {\bfseries load\+Game} ()
+\begin{DoxyCompactList}\small\item\em Funkcja wczytuj¹ca stan zapisanej gry \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_board_a3cb4d15877c61a5b2d4a15ee03c8a2b6}\label{class_board_a3cb4d15877c61a5b2d4a15ee03c8a2b6}} 
+\mbox{\hyperlink{class_figure}{Figure}} {\bfseries board} \mbox{[}8\mbox{]}\mbox{[}8\mbox{]}
+\begin{DoxyCompactList}\small\item\em Tablica dwuwymiarowa zawieraj¹ca wszystkie pionki na szachownicy \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_ae1c96373d91752d13e755dac3d9938c5}\label{class_board_ae1c96373d91752d13e755dac3d9938c5}} 
+int $\ast$ {\bfseries white\+King} = \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}}(41)
+\begin{DoxyCompactList}\small\item\em Po³o¿enie bia³ego króla \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a1f4d6710086fa37779201e754dd73119}\label{class_board_a1f4d6710086fa37779201e754dd73119}} 
+int $\ast$ {\bfseries black\+King} = \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}}(48)
+\begin{DoxyCompactList}\small\item\em po³o¿enie czarnego króla \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a18a56ce67a683650e5f822182f6e7d6e}\label{class_board_a18a56ce67a683650e5f822182f6e7d6e}} 
+bool {\bfseries checking}
+\begin{DoxyCompactList}\small\item\em zmienna s³u¿¹ca do zapêtlania proŸby o wybranie pionka \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a52d89a385ff7466114b5dc4dee19a586}\label{class_board_a52d89a385ff7466114b5dc4dee19a586}} 
+bool {\bfseries check\+White} = false
+\begin{DoxyCompactList}\small\item\em Informacja, czy wykonanko Check na bia³ym królu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a7554a1e769d3b43eee76cf3b5098a7c7}\label{class_board_a7554a1e769d3b43eee76cf3b5098a7c7}} 
+bool {\bfseries check\+Black} = false
+\begin{DoxyCompactList}\small\item\em Informacja czy wykonano Check na czarnym królu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a9362a8724d6073feb77bed57764a2bee}\label{class_board_a9362a8724d6073feb77bed57764a2bee}} 
+bool {\bfseries continue\+Game} = true
+\begin{DoxyCompactList}\small\item\em zmienna s³u¿¹ca do zapêtlania gry \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_ac7e8bbab1526b4058975bd8786b429aa}\label{class_board_ac7e8bbab1526b4058975bd8786b429aa}} 
+int $\ast$ {\bfseries coord\+Begin} = 0
+\begin{DoxyCompactList}\small\item\em Zmienna przechowuj¹ca wybrane wspó³rzêdne pocz¹tkowe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a70183b2ea862a9968148fdcd6b0aa6dd}\label{class_board_a70183b2ea862a9968148fdcd6b0aa6dd}} 
+int $\ast$ {\bfseries coordend} = 0
+\begin{DoxyCompactList}\small\item\em Zmienna przechowuj¹ca wybrane wspó³rzêdne koñcowe \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_aeb23a42527983d983829edabcb42aaaa}\label{class_board_aeb23a42527983d983829edabcb42aaaa}} 
+int {\bfseries beginning}
+\begin{DoxyCompactList}\small\item\em zmienna przecowuj¹ca koordynaty w postaci XY \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a2ffb33da55a472de87c35a5cf2a36f38}\label{class_board_a2ffb33da55a472de87c35a5cf2a36f38}} 
+int {\bfseries target}
+\item 
+\mbox{\Hypertarget{class_board_af74eff77a96f5cc388dc656189c73836}\label{class_board_af74eff77a96f5cc388dc656189c73836}} 
+int $\ast$ {\bfseries attacker} = new int\mbox{[}2\mbox{]}
+\begin{DoxyCompactList}\small\item\em Zmienna przechowuj¹ca wspó³rzêdne pionku który wykonac³ Check \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a87505cfd30e454bb55d1fe61210aaa38}\label{class_board_a87505cfd30e454bb55d1fe61210aaa38}} 
+Colors {\bfseries actual\+Player} = white
+\begin{DoxyCompactList}\small\item\em zmienna opisuj¹ca kolor aktualnego gracza \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a70c9d8ff9ff986a3cd76f2e1ce94db6a}\label{class_board_a70c9d8ff9ff986a3cd76f2e1ce94db6a}} 
+string {\bfseries player\+Message}
+\begin{DoxyCompactList}\small\item\em Informacja wyœwietlana po wykonaniu dzia³ania \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a879689648b563fbfe7fffc1334fdcb0a}\label{class_board_a879689648b563fbfe7fffc1334fdcb0a}} 
+Pieces {\bfseries begin\+Piece}
+\begin{DoxyCompactList}\small\item\em Rodzaj wybranego pionka \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_abf8dee001de87f4ac92d571749c1e0c6}\label{class_board_abf8dee001de87f4ac92d571749c1e0c6}} 
+Colors {\bfseries begin\+Color}
+\begin{DoxyCompactList}\small\item\em Kolor wybranego pionka \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_ad480c818298704cfe4e93691030624ab}\label{class_board_ad480c818298704cfe4e93691030624ab}} 
+string {\bfseries message}
+\begin{DoxyCompactList}\small\item\em Informacja wyœwietlana po wykonaniu dzia³ania \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a66c8d2a6b5a36a670ed1728691c7e0e9}\label{class_board_a66c8d2a6b5a36a670ed1728691c7e0e9}} 
+char {\bfseries smth}
+\begin{DoxyCompactList}\small\item\em zmienna która pozostawia okienko po zakonczeniu gry \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a0ae85610af26da3b8b96e1f48385ec20}\label{class_board_a0ae85610af26da3b8b96e1f48385ec20}} 
+string {\bfseries correct} = \char`\"{}Kolejna tura!\char`\"{}
+\begin{DoxyCompactList}\small\item\em string wyœwietlany w momencie kolejnego ruchu \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_board_a444b61085d0270f4b935a5a62473a0e1}\label{class_board_a444b61085d0270f4b935a5a62473a0e1}} 
+string {\bfseries fault} = \char`\"{}Niepoprawny ruch!\char`\"{}
+\begin{DoxyCompactList}\small\item\em string wyœwietlany w momencie wykonania niepoprawnego ruchu \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+G³ówna klasa \mbox{\hyperlink{class_board}{Board}} przechowuj¹ca pionki, ze wzglêdu na problemy z implementacj¹ klas przechowuje te¿ funkcje sprawdzaj¹ce ruch pionków 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_board_aaf79cf2b2c30650cca3423fb42efa9b9}\label{class_board_aaf79cf2b2c30650cca3423fb42efa9b9}} 
+\index{Board@{Board}!Check@{Check}}
+\index{Check@{Check}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{Check()}{Check()}}
+{\footnotesize\ttfamily bool Board\+::\+Check (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+kingz }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca, czy król znajduje siê w po³o¿eniu Check 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+kingz} & Po³o¿enie króla\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli król znajduje siê w po³o¿eniu Check
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_aed23eb8fab7b05dc1781270f5e1f3425}\label{class_board_aed23eb8fab7b05dc1781270f5e1f3425}} 
+\index{Board@{Board}!checkMove@{checkMove}}
+\index{checkMove@{checkMove}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{checkMove()}{checkMove()}}
+{\footnotesize\ttfamily void Board\+::check\+Move (\begin{DoxyParamCaption}\item[{Pieces}]{\+\_\+piece }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca poprawnoœæ wykonywanego ruchu 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+piece} & Pionek którym zamierzamy wykonaæ ruch\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_board_ad334511612d3a06b8b3114143cc29da9}\label{class_board_ad334511612d3a06b8b3114143cc29da9}} 
+\index{Board@{Board}!EndGame@{EndGame}}
+\index{EndGame@{EndGame}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{EndGame()}{EndGame()}}
+{\footnotesize\ttfamily bool Board\+::\+End\+Game (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+king,  }\item[{Colors}]{\+\_\+king\+Color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy król na pozycji Check ma opcjê ratunku 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+king} & Po³o¿enie króla\\
+\hline
+{\em \+\_\+king\+Color} & Kolor króla\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli król nie ma ucieczki
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_ad61b7b336fea51aceaf721f6cb1445ce}\label{class_board_ad61b7b336fea51aceaf721f6cb1445ce}} 
+\index{Board@{Board}!move@{move}}
+\index{move@{move}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Board\+::move (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beginning,  }\item[{int $\ast$}]{\+\_\+target }\end{DoxyParamCaption})}
+
+
+
+Funkcja wykonuj¹ca ruch pionkiem 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+beginning} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em \+\_\+target} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_board_ad194b4b5452a6084d9c3ac3c9e5c0ead}\label{class_board_ad194b4b5452a6084d9c3ac3c9e5c0ead}} 
+\index{Board@{Board}!move@{move}}
+\index{move@{move}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Board\+::move (\begin{DoxyParamCaption}\item[{int}]{\+\_\+beginning,  }\item[{int}]{\+\_\+target }\end{DoxyParamCaption})}
+
+
+
+Funkcja wykonuj¹ca ruch pionkiem 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+beginning} & Po³o¿enie pocz¹tkowe pionka\\
+\hline
+{\em \+\_\+target} & Po³o¿enie docelowe pionka\\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_board_a246408d9574bdaa6b6d347d2dd32a7b6}\label{class_board_a246408d9574bdaa6b6d347d2dd32a7b6}} 
+\index{Board@{Board}!moveBishop@{moveBishop}}
+\index{moveBishop@{moveBishop}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveBishop()}{moveBishop()}}
+{\footnotesize\ttfamily bool Board\+::move\+Bishop (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beg,  }\item[{int $\ast$}]{\+\_\+end,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Goñcem mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_ae4c4916f2915672e9b9b9feda6e5a0ea}\label{class_board_ae4c4916f2915672e9b9b9feda6e5a0ea}} 
+\index{Board@{Board}!moveKing@{moveKing}}
+\index{moveKing@{moveKing}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveKing()}{moveKing()}}
+{\footnotesize\ttfamily bool Board\+::move\+King (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beg,  }\item[{int $\ast$}]{\+\_\+end,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Królem mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a0a2b6c282f8daf45812115526b9dee29}\label{class_board_a0a2b6c282f8daf45812115526b9dee29}} 
+\index{Board@{Board}!moveKnight@{moveKnight}}
+\index{moveKnight@{moveKnight}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveKnight()}{moveKnight()}}
+{\footnotesize\ttfamily bool Board\+::move\+Knight (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beg,  }\item[{int $\ast$}]{\+\_\+end,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Skoczkiem mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a9c2b984619ec984dbf852f1776bc2432}\label{class_board_a9c2b984619ec984dbf852f1776bc2432}} 
+\index{Board@{Board}!movePawn@{movePawn}}
+\index{movePawn@{movePawn}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{movePawn()}{movePawn()}}
+{\footnotesize\ttfamily bool Board\+::move\+Pawn (\begin{DoxyParamCaption}\item[{int $\ast$}]{beg,  }\item[{int $\ast$}]{end,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Pionkiem mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_ad2caea76dcc3f0d4aea3d0eeb527faa2}\label{class_board_ad2caea76dcc3f0d4aea3d0eeb527faa2}} 
+\index{Board@{Board}!moveQueen@{moveQueen}}
+\index{moveQueen@{moveQueen}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveQueen()}{moveQueen()}}
+{\footnotesize\ttfamily bool Board\+::move\+Queen (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beg,  }\item[{int $\ast$}]{\+\_\+end,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Królow¹ mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_aec8325e40c701521c125a8d7e29fd28c}\label{class_board_aec8325e40c701521c125a8d7e29fd28c}} 
+\index{Board@{Board}!moveRook@{moveRook}}
+\index{moveRook@{moveRook}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{moveRook()}{moveRook()}}
+{\footnotesize\ttfamily bool Board\+::move\+Rook (\begin{DoxyParamCaption}\item[{int $\ast$}]{\+\_\+beginning,  }\item[{int $\ast$}]{\+\_\+target,  }\item[{Colors}]{\+\_\+color }\end{DoxyParamCaption})}
+
+
+
+Funkcja sprawdzaj¹ca czy ruch Wie¿¹ mo¿e byæ wykonany 
+
+
+\begin{DoxyParams}{Parameters}
+{\em beg} & Tablica z wspólrzêdnymi pocz¹tkowymi pionka\\
+\hline
+{\em end} & Tablica z wspó³rzêdnymi docelowymi pionka\\
+\hline
+{\em \+\_\+color} & Informacja o kolorze pionka\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Zwraca \char`\"{}\+True\char`\"{} jeœli ruch mo¿e byæ wykonany 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a8758688bd938ed3faafc8c0d8a064b6d}\label{class_board_a8758688bd938ed3faafc8c0d8a064b6d}} 
+\index{Board@{Board}!theGame@{theGame}}
+\index{theGame@{theGame}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{theGame()}{theGame()}}
+{\footnotesize\ttfamily bool Board\+::the\+Game (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+G³ówna funkcja obs³uguj¹ca grê 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_board_a58712e6adfa71b8f7df90d48545728c7}\label{class_board_a58712e6adfa71b8f7df90d48545728c7}} 
+\index{Board@{Board}!transformcoords@{transformcoords}}
+\index{transformcoords@{transformcoords}!Board@{Board}}
+\doxysubsubsection{\texorpdfstring{transformcoords()}{transformcoords()}}
+{\footnotesize\ttfamily int $\ast$ Board\+::transformcoords (\begin{DoxyParamCaption}\item[{int}]{\+\_\+coords }\end{DoxyParamCaption})}
+
+
+
+Funkcja rozdzielajaca podane wspó³rzêdne na dwie oddzielne cyfry 
+
+
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+coords} & Wspó³rzêdne podane w formacie XY\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Board.\+h\item 
+Board.\+cpp\item 
+game\+Logic.\+cpp\end{DoxyCompactItemize}

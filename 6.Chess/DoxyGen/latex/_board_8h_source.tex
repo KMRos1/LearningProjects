@@ -1,0 +1,54 @@
+\hypertarget{_board_8h_source}{}\doxysection{Board.\+h}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{1 }
+\DoxyCodeLine{2 \textcolor{preprocessor}{\#include "{}Header.h"{}}}
+\DoxyCodeLine{3 \textcolor{preprocessor}{\#include "{}Figure.h"{}}}
+\DoxyCodeLine{4 \textcolor{preprocessor}{\#pragma once}}
+\DoxyCodeLine{5 }
+\DoxyCodeLine{9 \textcolor{keyword}{class }\mbox{\hyperlink{class_board}{Board}}}
+\DoxyCodeLine{10 }
+\DoxyCodeLine{11 \{}
+\DoxyCodeLine{12     \textcolor{keyword}{public}:     }
+\DoxyCodeLine{16     \mbox{\hyperlink{class_figure}{Figure}}  \mbox{\hyperlink{class_board_a3cb4d15877c61a5b2d4a15ee03c8a2b6}{board}}[8][8];}
+\DoxyCodeLine{20     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_ae1c96373d91752d13e755dac3d9938c5}{whiteKing}} = \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}}(41);}
+\DoxyCodeLine{24     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_a1f4d6710086fa37779201e754dd73119}{blackKing}} = \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}}(48);}
+\DoxyCodeLine{28     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a18a56ce67a683650e5f822182f6e7d6e}{checking}}; }
+\DoxyCodeLine{32     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a52d89a385ff7466114b5dc4dee19a586}{checkWhite}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{36     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a7554a1e769d3b43eee76cf3b5098a7c7}{checkBlack}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{40     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a9362a8724d6073feb77bed57764a2bee}{continueGame}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{44     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_ac7e8bbab1526b4058975bd8786b429aa}{coordBegin}} = 0;}
+\DoxyCodeLine{48     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_a70183b2ea862a9968148fdcd6b0aa6dd}{coordend}} = 0;}
+\DoxyCodeLine{52     \textcolor{keywordtype}{int} \mbox{\hyperlink{class_board_aeb23a42527983d983829edabcb42aaaa}{beginning}}, target;}
+\DoxyCodeLine{56     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_af74eff77a96f5cc388dc656189c73836}{attacker}} = \textcolor{keyword}{new} \textcolor{keywordtype}{int}[2]; }
+\DoxyCodeLine{60     Colors \mbox{\hyperlink{class_board_a87505cfd30e454bb55d1fe61210aaa38}{actualPlayer}} = white;}
+\DoxyCodeLine{64     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_board_a70c9d8ff9ff986a3cd76f2e1ce94db6a}{playerMessage}};}
+\DoxyCodeLine{65 }
+\DoxyCodeLine{69     Pieces \mbox{\hyperlink{class_board_a879689648b563fbfe7fffc1334fdcb0a}{beginPiece}};}
+\DoxyCodeLine{73     Colors \mbox{\hyperlink{class_board_abf8dee001de87f4ac92d571749c1e0c6}{beginColor}};}
+\DoxyCodeLine{77     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_board_ad480c818298704cfe4e93691030624ab}{message}};}
+\DoxyCodeLine{81     \textcolor{keywordtype}{char} \mbox{\hyperlink{class_board_a66c8d2a6b5a36a670ed1728691c7e0e9}{smth}};}
+\DoxyCodeLine{85     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_board_a0ae85610af26da3b8b96e1f48385ec20}{correct}} = \textcolor{stringliteral}{"{}Kolejna tura!"{}};}
+\DoxyCodeLine{89     \textcolor{keywordtype}{string} \mbox{\hyperlink{class_board_a444b61085d0270f4b935a5a62473a0e1}{fault}} = \textcolor{stringliteral}{"{}Niepoprawny ruch!"{}};}
+\DoxyCodeLine{95     \textcolor{keywordtype}{int}* \mbox{\hyperlink{class_board_a58712e6adfa71b8f7df90d48545728c7}{transformcoords}}(\textcolor{keywordtype}{int} \_coords);}
+\DoxyCodeLine{99     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_aac2c60dfe825c6166be7d92418a1ef2a}{newBoard}}();}
+\DoxyCodeLine{103     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_aca49f093314a104381d05998bbf62f7f}{printBoard}}();}
+\DoxyCodeLine{107     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_a05c5b1f60f35e9fc2da413f06647df72}{newGame}}();}
+\DoxyCodeLine{112     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a8758688bd938ed3faafc8c0d8a064b6d}{theGame}}();}
+\DoxyCodeLine{117     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_aed23eb8fab7b05dc1781270f5e1f3425}{checkMove}}(Pieces \_piece);}
+\DoxyCodeLine{123     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_ad194b4b5452a6084d9c3ac3c9e5c0ead}{move}}(\textcolor{keywordtype}{int} \_beginning, \textcolor{keywordtype}{int} \_target);}
+\DoxyCodeLine{129     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_ad194b4b5452a6084d9c3ac3c9e5c0ead}{move}}(\textcolor{keywordtype}{int}* \_beginning, \textcolor{keywordtype}{int}* \_target);}
+\DoxyCodeLine{137     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a9c2b984619ec984dbf852f1776bc2432}{movePawn}}(\textcolor{keywordtype}{int}* beg, \textcolor{keywordtype}{int}* end, Colors \_color);}
+\DoxyCodeLine{145     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_aec8325e40c701521c125a8d7e29fd28c}{moveRook}}(\textcolor{keywordtype}{int}* \_beginning, \textcolor{keywordtype}{int}* \_target, Colors \_color);}
+\DoxyCodeLine{153     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a0a2b6c282f8daf45812115526b9dee29}{moveKnight}}(\textcolor{keywordtype}{int}* \_beg, \textcolor{keywordtype}{int}* \_end, Colors \_color);}
+\DoxyCodeLine{161     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_a246408d9574bdaa6b6d347d2dd32a7b6}{moveBishop}}(\textcolor{keywordtype}{int}* \_beg, \textcolor{keywordtype}{int}* \_end, Colors \_color);}
+\DoxyCodeLine{169     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_ae4c4916f2915672e9b9b9feda6e5a0ea}{moveKing}}(\textcolor{keywordtype}{int}* \_beg, \textcolor{keywordtype}{int}* \_end, Colors \_color);}
+\DoxyCodeLine{177     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_ad2caea76dcc3f0d4aea3d0eeb527faa2}{moveQueen}}(\textcolor{keywordtype}{int}* \_beg, \textcolor{keywordtype}{int}* \_end, Colors \_color);}
+\DoxyCodeLine{183     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_aaf79cf2b2c30650cca3423fb42efa9b9}{Check}}(\textcolor{keywordtype}{int}* \_kingz);}
+\DoxyCodeLine{190     \textcolor{keywordtype}{bool} \mbox{\hyperlink{class_board_ad334511612d3a06b8b3114143cc29da9}{EndGame}}(\textcolor{keywordtype}{int}* \_king,Colors \_kingColor);}
+\DoxyCodeLine{194     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_a5a6d3e4873393cca915e1b99f58962e0}{saveGame}}();}
+\DoxyCodeLine{198     \textcolor{keywordtype}{void} \mbox{\hyperlink{class_board_a29e8b760c3e865dc05bb773e768e1d5a}{loadGame}}();}
+\DoxyCodeLine{199 \};}
+\DoxyCodeLine{200 }
+
+\end{DoxyCode}

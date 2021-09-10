@@ -1,8 +1,2 @@
-﻿  Board.cpp
-C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Board.cpp(464,6): warning C4101: 'size': unreferenced local variable
-  gameLogic.cpp
-  main.cpp
-  Figure.cpp
-  Pawn.cpp
-  Generating Code...
-  szachy.vcxproj -> C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.exe
+﻿  szachy.vcxproj -> C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.exe
+  szachy.vcxproj -> C:\Users\kamil\OneDrive\Pulpit\IT\GitHub\LearningProjects\6.Chess\Debug\szachy.pdb (Partial -> Full PDB)
